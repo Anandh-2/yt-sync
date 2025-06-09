@@ -1,0 +1,152 @@
+.welcome .container {
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #0B0C2A	;
+    color: #BF00FF;
+    scroll-behavior: smooth;
+}
+
+.welcome .navbar {
+    background-color: #12123E;
+    height: 50px;
+    color: #fff;
+}
+
+.welcome .video-sec {
+    background-color: black;
+    height: 400px;
+    width: 600px;
+    border-radius: 20px;
+    
+}
+
+.welcome .search-bar{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome .sync{
+    color: #fff;
+}
+
+.welcome .video-container {
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.welcome #room-btn {
+    height: 60px;
+    width: 150px;
+    border: solid 2px ;
+    font-weight: 600;
+    font-size: 20px;
+    background-color: #12123E;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.welcome #room-btn:hover {
+    background-color: #fff;
+    color: black;
+}
+
+.welcome .intro-para {
+    width: 400px;
+    font-size: 28px;
+    line-height: 38px;
+}
+
+/* Blur effect on background */
+.welcome .blur {
+    filter: blur(4px);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Modal backdrop */
+.welcome .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Modal form */
+.welcome .modal-content {
+    background-color: #12123E;
+    /* padding: 30px; */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 400px;
+    height: 250px;
+}
+
+.welcome .modal-content h2 {
+    color: #fff;
+    font-size: 28px;
+}
+
+.welcome .modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.welcome .cancel-btn {
+    height: 40px;
+    width: 100px;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: #D90429;
+    color: #F5F5F5;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.welcome .cancel-btn:hover {
+  transform: scale(1.05);
+}
+
+.welcome .join-btn {
+    height: 40px;
+    width: 100px;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: #006400;
+    color: #F0FFF0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.welcome .join-btn:hover {
+  transform: scale(1.05);
+}
+
+.welcome .room-input {
+    width: 60%;
+    height: 40px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    color: #000;
+}

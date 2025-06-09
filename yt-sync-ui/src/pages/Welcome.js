@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import './Welcome.css';
+import React, { useState } from 'react'
+import '../styles/Welcome.css'
 
 function Welcome() {
-  const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
   const [roomName, setRoomName] = useState('');
 
   const handleCreateRoom = (e) => {
@@ -12,16 +12,15 @@ function Welcome() {
     setShowModal(false);
     setRoomName('');
   };
-
   return (
-    <>
+    <div className='welcome'>
       <div className={`container ${showModal ? 'blur' : ''}`}>
         <div className='navbar'>
           <h1 className='logo-name'>StaySync</h1>
         </div>
 
         <div className='search-bar'>
-          <span className='sync'><h1>Welcome to StaySync</h1></span>
+          <h1>Welcome to Stay</h1><span className='sync'><h1>Sync</h1></span>
         </div>
 
         <div className='video-container'>
@@ -51,8 +50,8 @@ function Welcome() {
           </form>
         </div>
       )}
-    </>
-  );
+    </div>
+  )
 }
 
-export default Welcome;
+export default Welcome

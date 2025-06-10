@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+
 import './App.css';
 import Welcome from './pages/Welcome';
 import { Route, Routes } from 'react-router-dom';
@@ -10,11 +10,7 @@ function App() {
     <div className='app'>
       <Routes>
         <Route path='/' element={<Welcome/>}/>
-        <Route path='/room/:roomId' element={
-          (localStorage.getItem('username'))?<Room/>:<div>
-            
-          </div>
-        }/>
+        <Route path='/room' element={<Room/>}/>
       </Routes>
     </div>
   );

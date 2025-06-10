@@ -1,0 +1,8 @@
+.room-container{
+     height: 100vh;
+    overflow-y: auto;
+    background-color: #0B0C2A	;
+    color: #BF00FF;
+    scroll-behavior: smooth;
+}
+

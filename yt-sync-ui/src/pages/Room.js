@@ -18,8 +18,19 @@ function Room() {
   return (
     <div>
       <div className='room-container'>
-        <iframe src='https://www.youtube.com/embed/goK4hKZ742w' title='sample'></iframe>
-        <div className="chat-messages">
+        <div className='navbar'>
+          <h1 className='logo-name'>StaySync</h1>
+        </div>
+        <div className='search-bar'>
+          <input type='search' placeholder='Search...'></input>
+        </div>
+        <section className='video-chat'>
+          <div className='video-sec'>
+            <iframe src='https://www.youtube.com/embed/goK4hKZ742w' title='sample'></iframe>
+          </div>
+          <div className="chat-box">
+      <div className="chat-header"><h2>Live chat</h2></div>
+          <div className="chat-messages">
         {messages.map((msg, index) => (
           <div className="chat-message" key={index}>
             <span className="chat-time">{msg.text}</span>
@@ -36,6 +47,13 @@ function Room() {
         />
         <button onClick={handleSend}>Send</button>
       </div>
+      </div>
+        </section>
+        <div className='playlist'>
+          <span><p>Playlist</p></span>
+        </div>
+        
+        
       </div>
     </div>
   )

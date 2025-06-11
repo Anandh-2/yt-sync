@@ -19,12 +19,14 @@ function Welcome() {
           <h1 className='logo-name'>StaySync</h1>
         </div>
 
-        <div className='search-bar'>
+        <div className='welcome-bar'>
           <h1>Welcome to Stay</h1><span className='sync'><h1>Sync</h1></span>
         </div>
 
         <div className='video-container'>
-          <div className='video-sec'></div>
+          <div className='video-sec'>
+            <video src='staysync-vedio.mp4' autoPlay muted loop></video>
+          </div>
           <h2 className='intro-para'>
             A simple platform where you can watch YouTube videos together.
           </h2>

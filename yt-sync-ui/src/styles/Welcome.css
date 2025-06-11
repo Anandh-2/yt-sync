@@ -1,152 +1,173 @@
+/* Main Container */
 .welcome .container {
-    height: 100vh;
-    overflow-y: auto;
-    background-color: #0B0C2A	;
-    color: #BF00FF;
-    scroll-behavior: smooth;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #0D0D0D; /* Deep black */
+  color: #F1F1F1; /* Soft white */
+  scroll-behavior: smooth;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Navbar */
 .welcome .navbar {
-    background-color: #12123E;
-    height: 50px;
-    color: #fff;
+  background-color: #121212;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.05);
 }
 
-.welcome .video-sec {
-    background-color: black;
-    height: 400px;
-    width: 600px;
-    border-radius: 20px;
-    
+.logo-name {
+  font-size: 24px;
+  font-weight: 600;
 }
 
-.welcome .search-bar{
-    width: 100%;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Header Section */
+.welcome-bar {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.welcome .sync{
-    color: #fff;
+.welcome .search-bar h1 {
+  color: #F1F1F1;
+  font-size: 32px;
 }
 
+.welcome .sync h1 {
+  color: #CCCCCC;
+  margin-left: 10px;
+}
+
+/* Video Container */
 .welcome .video-container {
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px 20px;
 }
 
+
+/* Video */
+video {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Description */
+.welcome .intro-para {
+  max-width: 600px;
+  font-size: 22px;
+  text-align: center;
+  line-height: 1.6;
+  color: #E0E0E0;
+}
+
+/* Create Room Button */
 .welcome #room-btn {
-    height: 60px;
-    width: 150px;
-    border: solid 2px ;
-    font-weight: 600;
-    font-size: 20px;
-    background-color: #12123E;
-    color: #fff;
-    border-radius: 10px;
-    cursor: pointer;
+  height: 50px;
+  width: 160px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  background-color: #2A2A2A;
+  color: #F1F1F1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .welcome #room-btn:hover {
-    background-color: #fff;
-    color: black;
+  background-color: #3C3C3C;
 }
 
-.welcome .intro-para {
-    width: 400px;
-    font-size: 28px;
-    line-height: 38px;
-}
-
-/* Blur effect on background */
+/* Blur when modal open */
 .welcome .blur {
-    filter: blur(4px);
-    pointer-events: none;
-    user-select: none;
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
 }
 
-/* Modal backdrop */
+/* Modal Backdrop */
 .welcome .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
-/* Modal form */
+/* Modal Content */
 .welcome .modal-content {
-    background-color: #12123E;
-    /* padding: 30px; */
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 400px;
-    height: 250px;
+  background-color: #1A1A1A;
+  padding: 30px;
+  border-radius: 15px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 }
 
 .welcome .modal-content h2 {
-    color: #fff;
-    font-size: 28px;
+  color: #F1F1F1;
+  font-size: 24px;
 }
 
+/* Input Field */
+.welcome .room-input {
+  width: 80%;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  background-color: #2C2C2C;
+  color: #F1F1F1;
+}
+
+/* Buttons inside Modal */
 .welcome .modal-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 12px;
 }
 
+.welcome .join-btn,
 .welcome .cancel-btn {
-    height: 40px;
-    width: 100px;
-    font-weight: 600;
-    font-size: 16px;
-    background-color: #D90429;
-    color: #F5F5F5;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.welcome .cancel-btn:hover {
-  transform: scale(1.05);
+  height: 40px;
+  width: 100px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .welcome .join-btn {
-    height: 40px;
-    width: 100px;
-    font-weight: 600;
-    font-size: 16px;
-    background-color: #006400;
-    color: #F0FFF0;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+  background-color: #333333;
+  color: #F1F1F1;
 }
 
-.welcome .join-btn:hover {
+.welcome .cancel-btn {
+  background-color: #2C2C2C;
+  color: #F1F1F1;
+}
+
+.welcome .join-btn:hover,
+.welcome .cancel-btn:hover {
   transform: scale(1.05);
-}
-
-.welcome .room-input {
-    width: 60%;
-    height: 40px;
-    padding: 0 10px;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
-    color: #000;
+  background-color: #444;
 }

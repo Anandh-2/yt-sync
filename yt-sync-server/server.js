@@ -3,6 +3,7 @@ import http from "http";
 import { Server } from "socket.io";
 import { nanoid } from "nanoid";
 import cors from "cors";
+import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -10,15 +11,19 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL,
+    origin: "*",
   },
 });
 
 app.use(cors());
 app.use(express.json());
 
-app.get('/',(req, res)=>{
-    res.send('<h1>Hello</h1>');
+app.get("/", (req, res) => {
+  const rs = rooms.map((r) => ({
+    ...r,
+    timeoutId: r.timeoutId ? "id" : "null",
+  }));
+  res.send(rs);
 });
 
 const rooms = [];
@@ -44,6 +49,25 @@ app.post("/create-room", (req, res) => {
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Server error" });
+  }
+});
+
+app.get("/search", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://www.googleapis.com/youtube/v3/search",
+      {
+        params: {
+          part: "snippet",
+          key: process.env.YT_API_KEY,
+          q: req.query.q,
+          pageToken: req.query.pageToken
+        },
+      }
+    );
+    return res.status(200).json({videos: response.data});
+  } catch (err) {
+    return res.status(500).json({message:'Server error'});
   }
 });
 
@@ -84,13 +108,13 @@ io.on("connection", (socket) => {
     console.log("roomId", socket.roomId);
     const room = rooms.find((r) => r.id === socket.roomId);
     if (room) {
-        room.members = room.members.filter((id) => id !== socket.id);
+      room.members = room.members.filter((id) => id !== socket.id);
       if (room.members.length === 0) {
         const timeoutId = setTimeout(() => {
           rooms.splice(rooms.indexOf(room), 1);
-          room.timeoutId = timeoutId;
-          room.master = null;
-        }, 5 * 60 * 1000);
+        }, 1 * 60 * 1000);
+        room.master = null;
+        room.timeoutId = timeoutId;
       } else {
         if (room.master === socket.id) {
           room.master = room.members[0];
@@ -109,7 +133,7 @@ io.on("connection", (socket) => {
 
 const PORT = process.env.PORT;
 
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
 

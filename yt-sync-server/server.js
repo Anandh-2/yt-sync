@@ -99,6 +99,7 @@ io.on("connection", (socket) => {
     console.log(msg);
     io.to(socket.roomId).emit("new message", {
       username: socket.username,
+      id: socket.id,
       msg,
     });
   });

@@ -171,3 +171,68 @@ video {
   transform: scale(1.05);
   background-color: #444;
 }
+
+/* Responsive Styles for Mobile Devices */
+@media (max-width: 600px) {
+  .welcome .navbar {
+    padding: 0 15px;
+    height: 50px;
+  }
+
+  .logo-name {
+    font-size: 30px;
+  }
+
+  .welcome-bar {
+    height: 60px;
+    margin-top: 50px;
+  }
+
+  .welcome-bar h1 {
+    font-size: 24px;
+  }
+
+  .welcome .video-container {
+    padding: 20px 10px;
+    gap: 20px;
+  }
+
+  video {
+    height: 260px;
+    border-radius: 12px;
+  }
+
+  .welcome .intro-para {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  .welcome #room-btn {
+    width: 130px;
+    height: 45px;
+    font-size: 16px;
+  }
+
+  .welcome .modal-content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .welcome .modal-content h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .welcome .room-input {
+    width: 100%;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .welcome .join-btn,
+  .welcome .cancel-btn {
+    width: 90px;
+    height: 36px;
+    font-size: 14px;
+  }
+}

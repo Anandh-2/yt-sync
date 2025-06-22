@@ -2,12 +2,17 @@ import React, { useEffect, useRef, useState} from 'react'
 import '../styles/Room.css'
 import {io} from 'socket.io-client'
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShareNodes } from '@fortawesome/free-solid-svg-icons'
 
 function Room() {
-   const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [roomName, setRoomName] = useState('');
+  const [playlist, setPlaylist] = useState(false);
+  const [chatbox, setChatbox] = useState(true);
+
 
   const {roomId} = useParams();
 
@@ -52,15 +57,22 @@ function Room() {
       <div className='room-container'>
         <div className='navbar'>
           <h1 className='logo-name'>StaySync</h1>
+          <input className='search-bar' type='search' placeholder='Search...'></input>
+          <FontAwesomeIcon id='share-icon' icon={faShareNodes} />
         </div>
-        <div className='search-bar'>
-          <input type='search' placeholder='Search...'></input>
-        </div>
+        
         <section className='video-chat'>
           <div className='video-sec'>
             <iframe src='https://www.youtube.com/embed/5CEXL8kfGL4' title='sample'></iframe>
           </div>
-          <div className="chat-box">
+          
+        
+
+          {chatbox && (
+            <div>
+              <button className='chat-sys' onClick={()=> {setPlaylist(false); setChatbox(true)}}>Chat Box</button>
+          <button className='play-sys' onClick={()=> {setPlaylist(true); setChatbox(false)}}>Playlist</button>
+            <div className="chat-box">
       <div className="chat-header"><h2>Live chat</h2></div>
           <div className="chat-messages">
         {messages.map((msg, index) => (
@@ -81,10 +93,18 @@ function Room() {
         <button onClick={handleSend}>Send</button>
       </div>
       </div>
-        </section>
-        <div className='playlist'>
-          <span><p>Playlist</p></span>
+      </div>
+          )}
+      {playlist && (
+        <div>
+          <button className='chat-sys' onClick={()=> {setPlaylist(false); setChatbox(true)}}>Chat Box</button>
+          <button className='play-sys' onClick={()=> {setPlaylist(true); setChatbox(false)}}>Playlist</button>
+        <div className="playlist">
+          <h2>Playlist</h2>
         </div>
+        </div>
+      )}
+        </section>
         
         
       </div>

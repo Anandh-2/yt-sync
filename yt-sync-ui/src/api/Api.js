@@ -9,6 +9,16 @@ export const createRoom = async()=>{
         const response = await api.post('/create-room');
         return response.data.roomId;
     }catch(err){
-        console.log('Error in api');
+        console.log('Error in api call');
+    }
+}
+
+export const search = async(queryString, nextPageToken)=>{
+    try{
+        const response = await api.get(`/search?q=${encodeURIComponent(queryString)}&pageToken=${nextPageToken}`);
+        return response.data;
+    }catch(err){
+        console.log('Error in api call', err);
+        return {};
     }
 }

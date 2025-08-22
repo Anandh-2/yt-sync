@@ -23,7 +23,7 @@ function Welcome() {
     <div className='welcome'>
       <div className={'container'}>
         <div className='navbar'>
-          <h1 className='logo-name'>StaySync</h1>
+          <h1 className='logo-name'>StaySyncd</h1>
         </div>
 
         <div className='welcome-bar'>

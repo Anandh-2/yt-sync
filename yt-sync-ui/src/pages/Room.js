@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { MdShare } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { MdClear } from "react-icons/md";
+import SearchArea from "../components/SearchArea";
+import useDebounce from "../hooks/useDebounce";
 
 function Room() {
   const [messages, setMessages] = useState([]);
@@ -13,6 +15,14 @@ function Room() {
   const [showModal, setShowModal] = useState(false);
   const [roomName, setRoomName] = useState("");
   const [actionSection, setActionSection] = useState("chat");
+  const [isSearching, setIsSearching] = useState(false);
+
+  const debouncedValue = useDebounce(searchInput);
+
+  const [urlInput, setUrlInput] = useState("");
+  const [currVidUrl, setCurrVidUrl] = useState("");
+
+  const searchRef = useRef();
 
   const { roomId } = useParams();
 
@@ -26,6 +36,15 @@ function Room() {
     setInput("");
   };
 
+  const handleBlur=(e)=>{
+    const next = e.relatedTarget;
+    if(searchRef.current&&(searchRef.current===next||searchRef.current.contains(next))){
+      e.target.focus();
+      return;
+    }
+    setIsSearching(false);
+  }
+
   const handleCreateRoom = (e) => {
     e.preventDefault();
     if (roomName.trim() === "") return alert("Room name can't be empty");
@@ -33,6 +52,25 @@ function Room() {
     setShowModal(false);
     setRoomName("");
   };
+
+  const parseURL = (url)=>{
+    try{
+      const u = new URL(url);
+      if(u.hostname.includes("youtube.com")){
+        return u.searchParams.get("v");
+      }
+      if(u.hostname.includes("youtu.be")){
+        return u.pathname.slice(1);
+      }
+    }catch(err){
+      return null;
+    }
+  }
+
+  const handleUrlChange = (e)=>{
+    setUrlInput(e.target.value);
+    console.log(e.target.value);
+  }
 
   useEffect(() => {
     const socket = io(process.env.REACT_APP_SERVER_URL, {
@@ -53,21 +91,23 @@ function Room() {
 
   return (
     <div>
+      {/* {isSearching && <SearchArea searchRef={searchRef} input={debouncedValue}/>} */}
       <div className="room-container">
         <div className="navbar">
-          <h1 className="logo-name">StaySync</h1>
-          <div className="search">
+          <h1 className="logo-name">StaySyncd</h1>
+          {/* <div className="search" onBlur={handleBlur}>
             <IoSearch className="search-icon" />
-            <input className="search-bar" placeholder="Search..." value={searchInput} onChange={(e)=>setSearchInput(e.value)}></input>
+            <input className="search-bar" placeholder="Search..." value={searchInput} onChange={(e)=>setSearchInput(e.target.value)} onFocus={()=>setIsSearching(true)}></input>
             <MdClear className="clear-icon" style={{cursor:'pointer'}} onClick={()=>setSearchInput("")}/>
-          </div>
+          </div> */}
+          <input className="link-inp" placeholder="Paste URL here" value={urlInput} onChange={handleUrlChange}/>
           <MdShare id="share-icon" />
         </div>
 
         <section className="video-sec">
           <div className="video">
             <iframe
-              src="https://www.youtube.com/embed/5CEXL8kfGL4"
+              src="https://www.youtube.com/embed/rsJ-LGpE7Lc"
               title="sample"
               allowFullScreen
             ></iframe>

@@ -61,13 +61,24 @@ app.get("/search", async (req, res) => {
           part: "snippet",
           key: process.env.YT_API_KEY,
           q: req.query.q,
-          pageToken: req.query.pageToken
+          maxResults: 10,
+          pageToken: req.query.pageToken,
         },
       }
     );
-    return res.status(200).json({videos: response.data});
+    const items = response.data.items;
+    const videos = items.map((item) => {
+      return {
+        title: item.snippet.title,
+        description: item.snippet.description,
+        thumbnail: item.snippet.thumbnails.default.url,
+        channelTitle: item.snippet.channelTitle,
+      };
+    });
+    return res.status(200).json({ videos, nextPageToken:response.data.nextPageToken });
   } catch (err) {
-    return res.status(500).json({message:'Server error'});
+    console.log(err);
+    return res.status(500).json({ message: "Server error" });
   }
 });
 
